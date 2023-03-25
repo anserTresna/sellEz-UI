@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:lottie/lottie.dart';
+import 'package:sellez_mobile/LoginPage.dart';
 import 'package:sellez_mobile/main.dart';
+import 'package:sellez_mobile/menubar/ResponsiveNavBarPage.dart';
 
 class OnBoardingPage extends StatefulWidget {
   final Key? key;
   const OnBoardingPage({this.key}) : super(key: key);
-  
+
   @override
   _OnBoardingPageState createState() => _OnBoardingPageState();
 }
@@ -28,39 +30,74 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
         PageViewModel(
             title: 'Stock Management',
             body: "Manage your supplier and Store goods",
-            image: Lottie.asset('assets/animation/orange-boxes.json',repeat: true,reverse: true, width: 200, height: 200,),
-                decoration: pageDecoration
-                ),
-                
+            image: Lottie.asset(
+              'assets/animation/orange-boxes.json',
+              repeat: true,
+              reverse: true,
+              width: 200,
+              height: 200,
+            ),
+            decoration: pageDecoration),
         PageViewModel(
             title: 'Easy Payment',
             body: "Make payments and transaction easier for store",
-            image: Lottie.asset('assets/animation/pocket-money.json', repeat: true, reverse: true,),
-                decoration: pageDecoration
-                ),
+            image: Lottie.asset(
+              'assets/animation/pocket-money.json',
+              repeat: true,
+              reverse: true,
+            ),
+            decoration: pageDecoration),
         PageViewModel(
-            title: 'Selling Increase',
-            body: 'Make your store sales increase with easy transaction and management',
-            image: Lottie.asset('assets/animation/supermarket-cart.json',repeat: true, reverse: true,),
-                decoration: pageDecoration,
-                // footer: ElevatedButton(
-                //   onPressed: () {},
-                //   child: Text('Registrasi'),
-                // )
-              
+          title: 'Selling Increase',
+          body:
+              'Make your store sales increase with easy transaction and management',
+          image: Lottie.asset(
+            'assets/animation/supermarket-cart.json',
+            repeat: true,
+            reverse: true,
+          ),
+          decoration: pageDecoration,
+          footer: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              ElevatedButton(
+                child: Text('Daftar Sekarang'),
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.blue,
+                  minimumSize: Size(381, 52),
+                  elevation: 5,
                 ),
-        
-              
+                onPressed: () {
+                  // Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  //   return ResponsiveNavBarPage();
+                  // }));
+                },
+              ),
+              ElevatedButton(
+                child: Text('Masuk'),
+                style: ElevatedButton.styleFrom(
+                  primary: Color.fromARGB(255, 255, 255, 255),
+                  onPrimary: Color.fromARGB(255, 0, 0, 0),
+                  minimumSize: Size(381, 52),
+                  elevation: 5,
+                ),
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return LoginPage();
+                  }));
+                },
+              ),
+            ],
+          ),
+        ),
       ],
-
       onDone: () {
-        // Navigator.pushReplacement(context, 
-        //   MaterialPageRoute(builder: (Builder) 
+        // Navigator.pushReplacement(context,
+        //   MaterialPageRoute(builder: (Builder)
         // {
         //   return DashboardScreen();
         // }));
       },
-      
       showSkipButton: true,
       showDoneButton: false,
       showNextButton: false,
@@ -69,14 +106,15 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
       skipOrBackFlex: 1,
       back: Icon(Icons.arrow_back),
       skip: Text(
-        'Skip', 
+        'Skip',
         style: TextStyle(fontWeight: FontWeight.bold),
       ),
       dotsDecorator: DotsDecorator(
-        size: Size(10, 10),
-        color: Colors.grey,
-        activeSize: Size(22, 10),
-        activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25))),
-    );            
+          size: Size(10, 10),
+          color: Colors.grey,
+          activeSize: Size(22, 10),
+          activeShape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(25))),
+    );
   }
 }

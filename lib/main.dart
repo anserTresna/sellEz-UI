@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'screen/OnBoardingPage.dart';
 import 'splash/splashScreen.dart';
+import 'menubar/ResponsiveNavBarPage.dart';
 
 void main() async {
   SystemChrome.setSystemUIOverlayStyle(
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Your App Name',
+      title: 'SellEZ',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => SplashScreen(),
         '/onboarding': (context) => OnBoardingPage(),
+        '/menubar': (context) => ResponsiveNavBarPage(),
       },
     );
   }
