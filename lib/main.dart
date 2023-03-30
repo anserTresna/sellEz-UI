@@ -1,15 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:async';
+
 import 'screen/OnBoardingPage.dart';
-import 'splash/splashScreen.dart';
 import 'menubar/ResponsiveNavBarPage.dart';
 
-void main() async {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle.dark.copyWith(statusBarColor: Colors.transparent),
   );
+
+  // Menjalankan fungsi initIntroduction() untuk menginisialisasi nilai introduction
+  await initIntroduction();
+
   runApp(MyApp());
 }
+
+Future<void> initIntroduction() async {
+  final prefs = await SharedPreferences.getInstance();
+
+  int? intro = prefs.getInt('Introduction');
+  print('intro : $intro');
+  if (intro != null && intro == 1) {
+    introduction = 1;
+  }
+  prefs.setInt('Introduction', 1);
+}
+
+int introduction = 0;
 
 class MyApp extends StatelessWidget {
   @override
@@ -19,10 +39,15 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      debugShowCheckedModeBanner: false,
+      home: introduction == 0
+          ? SplashScreen()
+          : introduction == 1
+              ? SplashScreen()
+              : ResponsiveNavBarPage(),
       // Definisi route
       initialRoute: '/',
       routes: {
-        '/': (context) => SplashScreen(),
         '/onboarding': (context) => OnBoardingPage(),
         '/menubar': (context) => ResponsiveNavBarPage(),
       },
@@ -30,18 +55,49 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class DashboardScreen extends StatefulWidget {
-  const DashboardScreen({Key? key}) : super(key: key);
-
+class SplashScreen extends StatefulWidget {
   @override
-  State<DashboardScreen> createState() => _DashboardScreenState();
+  _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _DashboardScreenState extends State<DashboardScreen> {
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    Timer(Duration(seconds: 3), () {
+      // Menentukan halaman berikutnya
+      Widget nextScreen;
+      if (introduction == 0) {
+        nextScreen = OnBoardingPage();
+      } else {
+        nextScreen = ResponsiveNavBarPage();
+      }
+
+      // Navigasi ke halaman berikutnya setelah 3 detik
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => nextScreen),
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Dashboard')),
-    ); 
+      backgroundColor: Colors.white, // set background putih
+      body: Center(
+        child: Container(
+          height: 200,
+          width: 200,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/images/logo.png'),
+              fit: BoxFit.contain,
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
+
+
