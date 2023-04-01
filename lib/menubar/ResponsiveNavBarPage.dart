@@ -1,129 +1,117 @@
 import 'package:flutter/material.dart';
 import 'package:sellez_mobile/main.dart';
 import 'package:introduction_screen/introduction_screen.dart';
+import 'package:sellez_mobile/header_drawer.dart';
+import 'package:sellez_mobile/LoginPage.dart';
 
-
-class ResponsiveNavBarPage extends StatelessWidget {
-  ResponsiveNavBarPage({Key? key}) : super(key: key);
-
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+class ResponsiveNavBarPage extends StatefulWidget {
+  const ResponsiveNavBarPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    final bool isLargeScreen = width > 800;
-
-    return Theme(
-      data: ThemeData(),
-      child: Scaffold(
-        key: _scaffoldKey,
-        appBar: AppBar(
-          backgroundColor: Color.fromARGB(255, 255, 255, 255),
-          elevation: 0,
-          titleSpacing: 0,
-          leading: isLargeScreen
-              ? null
-              : IconButton(
-                  color: Colors.grey,
-                  icon: const Icon(Icons.menu),
-                  onPressed: () => _scaffoldKey.currentState?.openDrawer(),
-                ),
-          // title: Padding(
-          //   padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          //   child: Row(
-          //     mainAxisAlignment: MainAxisAlignment.center,
-          //     children: [
-          //       const Text(
-          //         "Logo",
-          //         style: TextStyle(
-          //             color: Colors.green, fontWeight: FontWeight.bold),
-          //       ),
-          //       if (isLargeScreen) Expanded(child: _navBarItems())
-          //     ],
-          //   ),
-          // ),
-          // actions: const [
-          //   Padding(
-          //     padding: EdgeInsets.only(right: 16.0),
-          //     child: CircleAvatar(child: _ProfileIcon()),
-          //   )
-          // ],
-        ),
-        drawer: isLargeScreen ? null : _drawer(),
-        body: const Center(
-          child: Text(
-            "Body",
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _drawer() => Drawer(
-        child: ListView(
-          children: _menuItems
-              .map((item) => ListTile(
-                    onTap: () {
-                      _scaffoldKey.currentState?.openEndDrawer();
-                    },
-                    title: Text(item),
-                  ))
-              .toList(),
-        ),
-      );
-
-  Widget _navBarItems() => Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: _menuItems
-            .map(
-              (item) => InkWell(
-                onTap: () {},
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 24.0, horizontal: 16),
-                  child: Text(
-                    item,
-                    style: const TextStyle(fontSize: 18),
-                  ),
-                ),
-              ),
-            )
-            .toList(),
-      );
+  _ResponsiveNavBarPageState createState() => _ResponsiveNavBarPageState();
 }
 
-final List<String> _menuItems = <String>[
-  'About',
-  'Contact',
-  'Settings',
-  'Sign Out',
-];
-
-enum Menu { itemOne, itemTwo, itemThree }
-
-// class _ProfileIcon extends StatelessWidget {
-//   const _ProfileIcon({Key? key}) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return PopupMenuButton<Menu>(
-//         icon: const Icon(Icons.person),
-//         offset: const Offset(0, 40),
-//         onSelected: (Menu item) {},
-//         itemBuilder: (BuildContext context) => <PopupMenuEntry<Menu>>[
-//               const PopupMenuItem<Menu>(
-//                 value: Menu.itemOne,
-//                 child: Text('Account'),
-//               ),
-//               const PopupMenuItem<Menu>(
-//                 value: Menu.itemTwo,
-//                 child: Text('Settings'),
-//               ),
-//               const PopupMenuItem<Menu>(
-//                 value: Menu.itemThree,
-//                 child: Text('Sign Out'),
-//               ),
-//             ]);
-//   }
-// }
+class _ResponsiveNavBarPageState extends State<ResponsiveNavBarPage> {
+  bool _isLoggedIn = false;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.blue,
+        title: const Text("Beranda"),
+      ),
+      drawer: Scrollbar(
+        thumbVisibility: true,
+        child: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            const MyHeaderDrawer(),
+            ListTile(
+              leading: const Icon(Icons.home),
+              title: const Text("Beranda"),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.inventory),
+              title: const Text("Kelola Produk"),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.monetization_on),
+              title: const Text("Transaksi"),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.search_rounded),
+              title: const Text("Riwayat Transaksi"),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.local_shipping),
+              title: const Text("Supplier"),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.money_off),
+              title: const Text("Pengeluaran"),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.people_alt_rounded),
+              title: const Text("Pegawai"),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.receipt_rounded),
+              title: const Text("Laporan"),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+                  leading: const Icon(Icons.logout),
+                  title: _isLoggedIn
+                      ? const Text("Log Out")
+                      : const Text("Log In"),
+                  onTap: () {
+                    Navigator.pop(context);
+                    if (_isLoggedIn) {
+                      // Lakukan logout
+                      setState(() {
+                        _isLoggedIn = false;
+                      });
+                    } else {
+                      // fungsionalitas untuk login
+                      // Navigasi ke LoginPage()
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => LoginPage()));
+                      // Lakukan login
+                      // ...
+                      setState(() {
+                        _isLoggedIn = true;
+                      });
+                    }
+                  },
+                ),
+          ],
+        ),
+      ),
+      )
+    );
+  }
+}
