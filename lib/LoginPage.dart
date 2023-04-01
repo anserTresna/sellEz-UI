@@ -46,14 +46,6 @@ class _LoginPageState extends State<LoginPage> {
                         style: Theme.of(context).textTheme.headline5,
                       ),
                     ),
-                    // Padding(
-                    //   padding: const EdgeInsets.only(top: 8.0),
-                    //   child: Text(
-                    //     "Enter your email and password to continue.",
-                    //     style: Theme.of(context).textTheme.caption,
-                    //     textAlign: TextAlign.center,
-                    //   ),
-                    // ),
                     _gap(),
                     TextFormField(
                       
@@ -62,20 +54,10 @@ class _LoginPageState extends State<LoginPage> {
                         if (value == null || value.isEmpty) {
                           return 'Please enter email';
                         }
-
-                      //   bool emailValid = RegExp(
-                      //           r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                      //       .hasMatch(value);
-                      //   if (!emailValid) {
-                      //     return 'Please enter a valid email';
-                      //   }
-
-                      //   return null;
                       },
                       decoration: const InputDecoration(
                         labelText: 'Email',
                         hintText: 'Enter your email',
-                        // prefixIcon: Icon(Icons.email_outlined),
                         border: OutlineInputBorder(),
                       ),
                     ),
@@ -95,7 +77,6 @@ class _LoginPageState extends State<LoginPage> {
                       decoration: InputDecoration(
                           labelText: 'Password',
                           hintText: 'Enter your password',
-                          // prefixIcon: const Icon(Icons.lock_outline_rounded),
                           border: const OutlineInputBorder(),
                           suffixIcon: IconButton(
                             icon: Icon(_isPasswordVisible
@@ -109,28 +90,6 @@ class _LoginPageState extends State<LoginPage> {
                           )),
                     ),
                     _gap(),
-                    // CheckboxListTile(
-                    //   value: _rememberMe,
-                    //   onChanged: (value) {
-                    //     if (value == null) return;
-                    //     setState(() {
-                    //       _rememberMe = value;
-                    //     });
-                    //   },
-                    //   title: const Text('Remember me'),
-                    //   controlAffinity: ListTileControlAffinity.leading,
-                    //   dense: true,
-                    //   contentPadding: const EdgeInsets.all(0),
-                    // ),
-                    // _gap(),
-                    // Padding(
-                    //   padding: const EdgeInsets.only(top: 8.0),
-                    //   child: Text(
-                    //     "Belum Memiliki Akun? Daftar Sekarang.",
-                    //     style: Theme.of(context).textTheme.caption,
-                    //     textAlign: TextAlign.center,
-                    //   ),
-                    // ),
                     _gap(),
                     SizedBox(
                       width: double.infinity,
