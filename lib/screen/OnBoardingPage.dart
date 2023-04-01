@@ -3,7 +3,7 @@ import 'package:introduction_screen/introduction_screen.dart';
 import 'package:lottie/lottie.dart';
 import 'package:sellez_mobile/LoginPage.dart';
 import 'package:sellez_mobile/main.dart';
-import 'package:sellez_mobile/menubar/ResponsiveNavBarPage.dart';
+import 'package:sellez_mobile/RegisterPage.dart';
 
 class OnBoardingPage extends StatefulWidget {
   final Key? key;
@@ -25,127 +25,91 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
         bodyTextStyle: TextStyle(fontFamily: 'Alef', fontSize: 16),
         bodyPadding: EdgeInsets.all(16));
     return IntroductionScreen(
-        globalBackgroundColor: Colors.white,
-        pages: [
-          PageViewModel(
-              title: 'Stock Management',
-              body: "Manage your supplier and Store goods",
-              image: Lottie.asset(
-                'assets/animation/orange-boxes.json',
-                repeat: true,
-                reverse: true,
-                width: 200,
-                height: 200,
+      globalBackgroundColor: Colors.white,
+      pages: [
+        PageViewModel(
+            title: 'Stock Management',
+            body: "Manage your supplier and Store goods",
+            image: Lottie.asset(
+              'assets/animation/orange-boxes.json',
+              repeat: true,
+              reverse: true,
+              width: 200,
+              height: 200,
+            ),
+            decoration: pageDecoration),
+        PageViewModel(
+            title: 'Easy Payment',
+            body: "Make payments and transaction easier for store",
+            image: Lottie.asset(
+              'assets/animation/pocket-money.json',
+              repeat: true,
+              reverse: true,
+            ),
+            decoration: pageDecoration),
+        PageViewModel(
+          title: 'Selling Increase',
+          body:
+              'Make your store sales increase with easy transaction and management',
+          image: Lottie.asset(
+            'assets/animation/supermarket-cart.json',
+            repeat: true,
+            // reverse: true,
+          ),
+          decoration: pageDecoration,
+          footer: Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              width: 200,
+              height: 50,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(25),
+                color: Colors.blue,
               ),
-              decoration: pageDecoration),
-          PageViewModel(
-              title: 'Easy Payment',
-              body: "Make payments and transaction easier for store",
-              image: Lottie.asset(
-                'assets/animation/pocket-money.json',
-                repeat: true,
-                reverse: true,
-              ),
-              decoration: pageDecoration),
-          PageViewModel(
-              title: 'Selling Increase',
-              body:
-                  'Make your store sales increase with easy transaction and management',
-              image: Lottie.asset(
-                'assets/animation/supermarket-cart.json',
-                repeat: true,
-                // reverse: true,
-              ),
-              decoration: pageDecoration,
-              footer: Align(
-                alignment: Alignment.bottomCenter,
-                child: Container(
-                  width: 200,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(25),
-                    color: Colors.blue,
-                  ),
-                  child: ElevatedButton(
-                    onPressed: () {
-                                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                                  return LoginPage();
-                                }));
-                              },
-                    child: Text('Daftar Sekarang'),
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.transparent,
-                      elevation: 0,
-                    ),
-                  ),
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return LoginPage();
+                  }));
+                },
+                child: Text('Daftar Sekarang'),
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.transparent,
+                  elevation: 0,
                 ),
               ),
-            )
-
-          // Column(
-          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //     children: [
-          //       ElevatedButton(
-          //         child: Text('Daftar Sekarang'),
-          //         style: ElevatedButton.styleFrom(
-          //           primary: Colors.blue,
-          //           minimumSize: Size(381, 52),
-          //           elevation: 5,
-          //         ),
-          //         onPressed: () {
-          //           // Navigator.push(context, MaterialPageRoute(builder: (context) {
-          //           //   return ResponsiveNavBarPage();
-          //           // }));
-          //         },
-          //       ),
-          //       ElevatedButton(
-          //         child: Text('Masuk'),
-          //         style: ElevatedButton.styleFrom(
-          //           primary: Color.fromARGB(255, 255, 255, 255),
-          //           onPrimary: Color.fromARGB(255, 0, 0, 0),
-          //           minimumSize: Size(381, 52),
-          //           elevation: 5,
-          //         ),
-          //         onPressed: () {
-          //           Navigator.push(context, MaterialPageRoute(builder: (context) {
-          //             return LoginPage();
-          //           }));
-          //         },
-          //       ),
-          //     ],
-          //   ),
-        ],
-        onDone: () {
-          Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (Builder)
-          {
-            return ResponsiveNavBarPage();
-          }));
-        },
-        showSkipButton: true,
-        showDoneButton: true,
-        showNextButton: true,
-        showBackButton: false,
-        dotsFlex: 3,
-        skipOrBackFlex: 1,
-        back: Icon(Icons.arrow_back),
-        skip: Text(
-          'Skip',
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-        next: Icon(Icons.arrow_forward),
-        done: Text(
-          'Done',
+            ),
+          ),
+        )
+      ],
+      onDone: () {
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (Builder) {
+          return RegisterPage();
+        }));
+      },
+      showSkipButton: true,
+      showDoneButton: true,
+      showNextButton: true,
+      showBackButton: false,
+      dotsFlex: 3,
+      skipOrBackFlex: 1,
+      back: Icon(Icons.arrow_back),
+      skip: Text(
+        'Skip',
+        style: TextStyle(fontWeight: FontWeight.bold),
+      ),
+      next: Icon(Icons.arrow_forward),
+      done: Text('Done',
           style: TextStyle(
             fontWeight: FontWeight.bold,
-          )
-        ),
-          dotsDecorator : DotsDecorator (
-              size: Size(10, 10),
-              color: Colors.grey,
-              activeSize: Size(22, 10),
-              activeShape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(25))),
-        );
+          )),
+      dotsDecorator: DotsDecorator(
+          size: Size(10, 10),
+          color: Colors.grey,
+          activeSize: Size(22, 10),
+          activeShape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(25))),
+    );
   }
 }
