@@ -69,7 +69,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return LoginPage();
+                    return RegisterPage();
                   }));
                 },
                 child: Text('Daftar Sekarang'),

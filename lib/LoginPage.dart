@@ -4,6 +4,7 @@ import 'package:sellez_mobile/main.dart';
 import 'package:flutter/material.dart';
 import 'package:sellez_mobile/menubar/ResponsiveNavBarPage.dart';
 import 'package:sellez_mobile/screen/OnBoardingPage.dart';
+import 'package:sellez_mobile/RegisterPage.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
