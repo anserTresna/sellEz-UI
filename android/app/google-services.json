@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "826234565191",
+    "firebase_url": "https://sellez-ui-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "sellez-ui",
+    "storage_bucket": "sellez-ui.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:826234565191:android:413a9908a6dabe697b3762",
+        "android_client_info": {
+          "package_name": "com.example.sellez_mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "826234565191-qunvt5qt7i7m5792rcf8c9ksg41c5cgf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAd7e6uOWSZJUtd7kwHA0513sQ9iXfZ-Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "826234565191-qunvt5qt7i7m5792rcf8c9ksg41c5cgf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
