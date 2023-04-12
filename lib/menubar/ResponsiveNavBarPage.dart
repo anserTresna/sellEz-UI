@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sellez_mobile/main.dart';
-import 'package:introduction_screen/introduction_screen.dart';
 import 'package:sellez_mobile/header_drawer.dart';
 import 'package:sellez_mobile/LoginPage.dart';
+import 'package:sellez_mobile/Supplier/Supplier.dart';
 
 class ResponsiveNavBarPage extends StatefulWidget {
   const ResponsiveNavBarPage({Key? key}) : super(key: key);
@@ -59,9 +58,11 @@ class _ResponsiveNavBarPageState extends State<ResponsiveNavBarPage> {
               leading: const Icon(Icons.local_shipping),
               title: const Text("Supplier"),
               onTap: () {
-                Navigator.pop(context);
-              },
-            ),
+                  Navigator.pop(context);
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Supplier()));
+                  },
+                ),
             ListTile(
               leading: const Icon(Icons.money_off),
               title: const Text("Pengeluaran"),
