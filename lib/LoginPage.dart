@@ -6,6 +6,7 @@ import 'RegisterPage.dart';
 import 'package:flutter/material.dart';
 import 'package:sellez_mobile/menubar/ResponsiveNavBarPage.dart';
 import 'package:sellez_mobile/screen/OnBoardingPage.dart';
+import 'package:sellez_mobile/RegisterPage.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
