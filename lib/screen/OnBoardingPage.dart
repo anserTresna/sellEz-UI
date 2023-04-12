@@ -74,7 +74,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                 },
                 child: Text('Daftar Sekarang'),
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.transparent,
+                  backgroundColor: Colors.transparent,
                   elevation: 0,
                 ),
               ),
@@ -85,7 +85,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
       onDone: () {
         Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (Builder) {
-          return RegisterPage();
+          return LoginPage();
         }));
       },
       showSkipButton: true,

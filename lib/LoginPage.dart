@@ -1,9 +1,14 @@
-import 'package:sellez_mobile/main.dart';
-import 'package:introduction_screen/introduction_screen.dart';
-import 'package:sellez_mobile/main.dart';
+// import 'package:sellez_mobile/main.dart';
+// import 'package:introduction_screen/introduction_screen.dart';
+import 'RegisterPage.dart';
+
+
 import 'package:flutter/material.dart';
 import 'package:sellez_mobile/menubar/ResponsiveNavBarPage.dart';
 import 'package:sellez_mobile/screen/OnBoardingPage.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -14,9 +19,56 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool _isPasswordVisible = false;
-  bool _rememberMe = false;
+  // bool _rememberMe = false;
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  // final FirebaseAuth _auth = FirebaseAuth.instance;
+  // final FirebaseFirestore _db = FirebaseFirestore.instance;
+  // String? _email, _password;
+  // bool _isLoading = false;
+
+  // void _submit() async {
+  //   final form = _formKey.currentState;
+  //   if (form?.validate() ?? false) {
+  //     form?.save();
+  //     setState(() {
+  //       _isLoading = true;
+  //     });
+  //     try {
+  //       // Get user data from firestore
+  //       final QuerySnapshot<Map<String, dynamic>> snapshot = await _db
+  //           .collection('users')
+  //           .where('email', isEqualTo: _email)
+  //           .get();
+  //       if (snapshot.docs.isNotEmpty) {
+  //         final userData = snapshot.docs.first.data();
+  //         final userCredential = await _auth.signInWithEmailAndPassword(
+  //           email: _email!,
+  //           password: _password!,
+  //         );
+  //         if (userCredential.user != null) {
+  //           setState(() {
+  //             _isLoading = false;
+  //           });
+  //           Navigator.push(
+  //             context,
+  //             MaterialPageRoute(
+  //               builder: (context) => ResponsiveNavBarPage(
+  //                 // name: name,
+  //                 // email: email,
+  //               ),
+  //             ),
+  //           );
+  //         }
+  //       }
+  //     } catch (e) {
+  //       print(e);
+  //       setState(() {
+  //         _isLoading = false;
+  //       });
+  //     }
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +100,8 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     _gap(),
                     TextFormField(
-                      
+                    
+                      // onSaved: (value) => _email = value,
                       validator: (value) {
                         // add email validation
                         if (value == null || value.isEmpty) {
@@ -63,6 +116,8 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     _gap(),
                     TextFormField(
+                    
+                      // onSaved: (value) => _password = value,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter password';
@@ -89,6 +144,22 @@ class _LoginPageState extends State<LoginPage> {
                             },
                           )),
                     ),
+                    const SizedBox(height: 16),
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return RegisterPage();
+                        }));
+                      },
+                      child: Text(
+                        "Belum mempunyai akun? Daftar sekarang.",
+                        style: TextStyle(
+                          color: Colors.blue,
+                          decoration: TextDecoration.underline,
+                        ),
+                      ),
+                    ),
                     _gap(),
                     _gap(),
                     SizedBox(
@@ -110,13 +181,14 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                         ),
-                        onPressed: () {
-                          if (_formKey.currentState?.validate() ?? false) {
+                        onPressed: ()  {
+                          //
+
+                        
                             Navigator.push(context,
-                                MaterialPageRoute(builder: (context) {
-                              return ResponsiveNavBarPage();
-                            }));
-                          }
+                              MaterialPageRoute(builder: (context) {
+                            return ResponsiveNavBarPage();
+                          }));
                         },
                       ),
                     ),
@@ -162,3 +234,4 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _gap() => const SizedBox(height: 16);
 }
+

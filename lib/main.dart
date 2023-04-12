@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:async';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+import 'LoginPage.dart';
+
 
 import 'screen/OnBoardingPage.dart';
 import 'menubar/ResponsiveNavBarPage.dart';
@@ -10,6 +14,9 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle.dark.copyWith(statusBarColor: Colors.transparent),
+  );
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
   );
 
   // Menjalankan fungsi initIntroduction() untuk menginisialisasi nilai introduction
@@ -44,7 +51,7 @@ class MyApp extends StatelessWidget {
           ? SplashScreen()
           : introduction == 1
               ? SplashScreen()
-              : ResponsiveNavBarPage(),
+              : LoginPage(),
       // Definisi route
       initialRoute: '/',
       routes: {
@@ -70,7 +77,7 @@ class _SplashScreenState extends State<SplashScreen> {
       if (introduction == 0) {
         nextScreen = OnBoardingPage();
       } else {
-        nextScreen = ResponsiveNavBarPage();
+        nextScreen = LoginPage();
       }
 
       // Navigasi ke halaman berikutnya setelah 3 detik

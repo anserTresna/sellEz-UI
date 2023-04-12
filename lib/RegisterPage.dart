@@ -1,8 +1,7 @@
-import 'package:sellez_mobile/main.dart';
-import 'package:introduction_screen/introduction_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:sellez_mobile/menubar/ResponsiveNavBarPage.dart';
-import 'package:sellez_mobile/screen/OnBoardingPage.dart';
+import 'LoginPage.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -12,10 +11,50 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  bool _isPasswordVisible = false;
-  String? _selectedValue = 'Kafe & Coffee Shop';
-
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  String? _namaPemilik;
+  String? _nomorHp;
+  String? _email;
+  String? _password;
+  String? _alamat;
+  String? _namaUsaha;
+  String? _kategoriUsaha;
+
+  void _submitForm() async {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+
+      try {
+        await FirebaseFirestore.instance.collection('users').add({
+          'nama_pemilik': _namaPemilik,
+          'nomor_hp': _nomorHp,
+          'email': _email,
+          'password': _password,
+          'alamat': _alamat,
+          'nama_usaha': _namaUsaha,
+          'kategori_usaha': _kategoriUsaha,
+        });
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Data berhasil disimpan'),
+          ),
+        );
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => LoginPage()),
+        );
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Terjadi kesalahan saat menyimpan data: $e'),
+          ),
+        );
+      }
+    }
+  }
+bool _isPasswordVisible = false;
+String? _selectedValue = 'Kafe & Coffee Shop';
 
   @override
   Widget build(BuildContext context) {
@@ -50,6 +89,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   _gap(),
                   TextFormField(
+                    onSaved: (value) => _namaPemilik = value,
                     validator: (value) {
                       // add Nama Pemilik
                       if (value == null || value.isEmpty) {
@@ -64,6 +104,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   _gap(),
                   TextFormField(
+                    onSaved: (value) => _nomorHp = value,
                     validator: (value) {
                       // add Nomor Hp
                       if (value == null || value.isEmpty) {
@@ -78,6 +119,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   _gap(),
                   TextFormField(
+                    onSaved: (value) => _email = value,
                     validator: (value) {
                       // add Email
                       if (value == null || value.isEmpty) {
@@ -92,6 +134,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   _gap(),
                   TextFormField(
+                    onSaved: (value) => _password = value,
                     validator: (value) {
                       //add password
                       if (value == null || value.isEmpty) {
@@ -122,6 +165,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   _gap(),
                   TextFormField(
+                    onSaved: (value) => _alamat = value,
                     validator: (value) {
                       // add Alamat
                       if (value == null || value.isEmpty) {
@@ -151,6 +195,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   _gap(),
                   TextFormField(
+                    onSaved: (value) => _namaUsaha = value,
                     validator: (value) {
                       // add Nama Pemilik
                       if (value == null || value.isEmpty) {
@@ -164,11 +209,11 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ),
                   _gap(),
-                  DropdownButtonFormField<String>(
+                  DropdownButtonFormField(
                     value: _selectedValue,
-                    onChanged: (value) {
+                    onChanged: (newValue) {
                       setState(() {
-                        _selectedValue = value;
+                        _selectedValue = newValue.toString();
                       });
                     },
                     items: [
@@ -243,37 +288,10 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ),
 
-                  _gap(),
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        elevation: 5,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                      ),
-                      child: const Padding(
-                        padding: EdgeInsets.all(10.0),
-                        child: Text(
-                          'Daftar',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      onPressed: () {
-                        if (_formKey.currentState?.validate() ?? false) {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) {
-                            return ResponsiveNavBarPage();
-                          }));
-                        }
-                      },
-                    ),
+                  ElevatedButton(
+                    onPressed: _submitForm,
+                    child: Text('Daftar'),
                   ),
-                  _gap(),
                 ],
               ),
             ),
