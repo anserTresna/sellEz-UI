@@ -15,7 +15,10 @@ class _TambahSupplierState extends State<TambahSupplier> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
+      
         title: const Text("Tambah Supplier"),
+        
+        elevation: 0,
       ),
       body: SingleChildScrollView(
         child: Padding(

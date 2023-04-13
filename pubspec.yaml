@@ -45,6 +45,7 @@ dependencies:
   cloud_firestore: ^4.5.0
   flutter_svg: ^2.0.4
   hexcolor: ^3.0.1
+  image_picker: ^0.8.7+2
   
 
 dev_dependencies:

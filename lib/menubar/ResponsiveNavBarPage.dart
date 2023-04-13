@@ -4,6 +4,8 @@ import 'package:sellez_mobile/header_drawer.dart';
 import 'package:sellez_mobile/LoginPage.dart';
 import 'package:sellez_mobile/Supplier/Supplier.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:sellez_mobile/kelolaproduk/KelolaProdukPage.dart';
+import 'package:sellez_mobile/pegawai/Pegawai.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:sellez_mobile/TransaksiPage/TransaksiPage.dart';
 import 'package:sellez_mobile/kelolaproduk/KelolaProdukPage.dart';
@@ -46,6 +48,10 @@ class _ResponsiveNavBarPageState extends State<ResponsiveNavBarPage> {
                 title: const Text("Kelola Produk"),
                 onTap: () {
                   Navigator.pop(context);
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => KelolaProdukPage()));
                 },
               ),
               ListTile(
@@ -83,6 +89,10 @@ class _ResponsiveNavBarPageState extends State<ResponsiveNavBarPage> {
                 title: const Text("Pegawai"),
                 onTap: () {
                   Navigator.pop(context);
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => PegawaiPage()));
                 },
               ),
               ListTile(
@@ -124,234 +134,237 @@ class _ResponsiveNavBarPageState extends State<ResponsiveNavBarPage> {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 12),
-              child: Column(
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 17, 96, 118),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    padding: EdgeInsets.all(12),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Laporan',
-                          style: TextStyle(
-                            color: Color.fromARGB(255, 255, 255, 255),
-                            fontFamily: 'Alef',
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                          ),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 25.0, vertical: 12),
+              child: Column(children: [
+                Container(
+                  decoration: BoxDecoration(
+                    color: Color.fromARGB(255, 17, 96, 118),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  padding: EdgeInsets.all(12),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Laporan',
+                        style: TextStyle(
+                          color: Color.fromARGB(255, 255, 255, 255),
+                          fontFamily: 'Alef',
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
                         ),
-                        Row(
-                          children: [
-                            Text(
-                              'Lihat semua',
-                              style: TextStyle(
-                                fontFamily: 'Alef',
-                                fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(255, 255, 255, 255),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Icon(
-                              Icons.arrow_forward,
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            'Lihat semua',
+                            style: TextStyle(
+                              fontFamily: 'Alef',
+                              fontWeight: FontWeight.bold,
                               color: Color.fromARGB(255, 255, 255, 255),
-                              size: 16,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Icon(
+                            Icons.arrow_forward,
+                            color: Color.fromARGB(255, 255, 255, 255),
+                            size: 16,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Expanded(
+                      child: Container(
+                        height: 60,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(12),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.5),
+                              spreadRadius: 2,
+                              blurRadius: 5,
+                              offset: Offset(0, 3),
                             ),
                           ],
                         ),
-                      ],
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Penjualan Bulan Ini',
+                              style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xff393646)),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              'Rp 10.000.000',
+                              style: TextStyle(
+                                fontSize: 10,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.blue[800],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Expanded(
-                        child: Container(
-                          height: 60,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(12),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.5),
-                                spreadRadius: 2,
-                                blurRadius: 5,
-                                offset: Offset(0, 3),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    Expanded(
+                      child: Container(
+                        height: 60,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(12),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.5),
+                              spreadRadius: 2,
+                              blurRadius: 5,
+                              offset: Offset(0, 3),
+                            ),
+                          ],
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Penjualan Hari Ini',
+                              style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xff393646)),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              'Rp 1.000.000',
+                              style: TextStyle(
+                                fontSize: 10,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.blue[800],
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 20),
+                // GestureDetector(
+                //   onTap: () {
+                //     Navigator.push(
+                //         context,
+                //         MaterialPageRoute(
+                //             builder: (context) => KelolaProdukPage()));
+                //   },
+                // ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Container(
+                        height: 60,
+                        decoration: BoxDecoration(
+                          color: Color(0xFFFEFCF3),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Center(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
+                              SvgPicture.asset('assets/svg/inventory.svg',
+                                  height: 30),
+                              SizedBox(height: 8),
                               Text(
-                                'Penjualan Bulan Ini',
+                                'Kelola Produk',
                                 style: TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.bold,
-                                  color: Color(0xff393646)
-                                ),
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Text(
-                                'Rp 10.000.000',
-                                style: TextStyle(
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.blue[800],
-                                ),
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xff393646)),
                               ),
                             ],
+                            
                           ),
                         ),
                       ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Expanded(
-                        child: Container(
-                          height: 60,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(12),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.5),
-                                spreadRadius: 2,
-                                blurRadius: 5,
-                                offset: Offset(0, 3),
-                              ),
-                            ],
-                          ),
+                    ),
+                    SizedBox(width: 20),
+                    Expanded(
+                      child: Container(
+                        height: 60,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Center(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
+                              SvgPicture.asset('assets/svg/transaction.svg',
+                                  height: 30),
+                              SizedBox(height: 8),
                               Text(
-                                'Penjualan Hari Ini',
+                                'Transaksi',
                                 style: TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.bold,
-                                  color: Color(0xff393646)
-                                ),
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Text(
-                                'Rp 1.000.000',
-                                style: TextStyle(
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.blue[800],
-                                ),
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xff393646)),
                               ),
                             ],
                           ),
                         ),
                       ),
-                    ],
-                  ),
-                  SizedBox(height: 20),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: Container(
-                          height: 60,
-                          decoration: BoxDecoration(
-                            color: Color(0xFFFEFCF3),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                SvgPicture.asset('assets/svg/inventory.svg',
-                                    height: 30),
-                                SizedBox(height: 8),
-                                Text(
-                                  'Kelola Produk',
-                                  style: TextStyle(
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.bold,
-                                      color: Color(0xff393646)
-                                      ),
-                                ),
-                              ],
-                            ),
-                          ),
+                    ),
+                    SizedBox(width: 20),
+                    Expanded(
+                      child: Container(
+                        height: 60,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(12),
                         ),
-                      ),
-                      SizedBox(width: 20),
-                      Expanded(
-                        child: Container(
-                          height: 60,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                SvgPicture.asset('assets/svg/transaction.svg',
-                                    height: 30),
-                                SizedBox(height: 8),
-                                Text(
-                                  'Transaksi',
-                                  style: TextStyle(
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SvgPicture.asset('assets/svg/staff.svg',
+                                  height: 30),
+                              SizedBox(height: 8),
+                              Text(
+                                'Pegawai',
+                                style: TextStyle(
                                     fontSize: 10,
                                     fontWeight: FontWeight.bold,
-                                    color: Color(0xff393646)
-                                  ),
-                                ),
-                              ],
-                            ),
+                                    color: Color(0xff393646)),
+                              ),
+                            ],
                           ),
                         ),
                       ),
-                      SizedBox(width: 20),
-                      Expanded(
-                        child: Container(
-                          height: 60,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [                
-                                SvgPicture.asset('assets/svg/staff.svg',
-                                    height: 30),
-                                SizedBox(height: 8),
-                                Text(
-                                  'Pegawai',
-                                  style: TextStyle(
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(0xff393646)
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      
-                    ],
-                  ),
-                  SizedBox(height: 20),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 20),
                 Row(
                   children: [
                     SvgPicture.asset(
@@ -362,7 +375,7 @@ class _ResponsiveNavBarPageState extends State<ResponsiveNavBarPage> {
                   ],
                 ),
               ]),
-            )     
+            )
           ],
         ),
       ),

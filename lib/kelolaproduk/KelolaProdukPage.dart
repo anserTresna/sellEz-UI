@@ -19,6 +19,7 @@ class _KelolaProdukPageState extends State<KelolaProdukPage> {
       appBar: AppBar(
         backgroundColor: Colors.blue,
         title: const Text("Kelola Produk"),
+        elevation: 0,
       ),
       body: Form(
         child: Center(
